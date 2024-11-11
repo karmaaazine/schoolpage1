@@ -1,0 +1,652 @@
+/* Add these rules at the top of your CSS file */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;  /* Prevents horizontal scrolling */
+}
+/* Base styles */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: top 0.3s, background-color 0.3s;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.logo img {
+    width: 80px;
+    height: auto;
+}
+
+nav {
+    flex: 1;
+    text-align: center;
+    margin-left: 20px;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #333;
+}
+
+
+.off-screen-menu {
+    height: 100vh;
+    width: 100%;
+    max-width: 450px;
+    position: fixed;
+    top: 0;
+    right: -450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: center;
+    text-align: center;
+    font-size: 3rem;
+    transition: .3s ease;
+}
+.off-screen-menu.active {
+    right: 0;
+}
+
+
+
+/* nav */
+nav {
+    padding: 1rem;
+    display: flex;
+}
+
+/*/
+
+/* ham menu */
+.ham-menu {
+    height: 50px;
+    width: 40px;
+    margin-left: auto;
+    position: relative;
+}
+.ham-menu span {
+    height: 5px;
+    width: 100%;
+    background-color: black;
+    border-radius: 25px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: .3s ease;
+}
+.ham-menu span:nth-child(1) {
+    top: 25%;
+}
+.ham-menu span:nth-child(3) {
+    top: 75%;
+}
+.ham-menu.active span {
+    background-color: white;
+}
+.ham-menu.active span:nth-child(1) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.ham-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+.ham-menu.active span:nth-child(3) {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+/*/
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        padding-top: 80px;
+    }
+
+    .nav-menu.active {
+        display: block;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-menu ul li {
+        margin: 15px 0;
+    }
+}
+
+/* Media query for very small devices */
+@media screen and (max-width: 480px) {
+    header {
+        padding: 1rem;
+    }
+
+    .logo img {
+        max-height: 40px;
+    }
+
+    nav {
+        width: 85%;
+    }
+}
+
+/* Prevent content from hiding behind the header */
+body {
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    margin-top: 80px;
+    padding: 0;
+}
+
+/* Hero section styles */
+.hero {
+    position: relative;
+    min-height: 80vh;
+    width: 100%;
+    overflow: hidden;
+    background-image: url('img/background.png'); /* Set your background image */
+    background-size: cover; /* Ensures the image covers the entire section */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 1200px;
+    margin-left: 15%;
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    width: 400px;
+    transform: rotate(5deg);
+    margin-right: auto;
+    position: relative;
+    z-index: 3;
+}
+
+.menu-item {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: 2px solid #000;
+}
+
+.menu-item:hover {
+    transform: scale(1.05) translateX(-20px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.institution {
+    background-color: white;
+    color: #333;
+    transform: translateX(30px);
+}
+
+.complaints {
+    background-color: #FFD700;
+    color: #333;
+    transform: translateX(0px);
+}
+
+.students-space {
+    background-color: #E6A8F7;
+    color: #333;
+    transform: translateX(-30px);
+}
+
+.activities {
+    background-color: #FF7F50;
+    color: white;
+    transform: translateX(-60px);
+}
+
+/* Add decorative image */
+.hero-content::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -100px;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    background-image: url('path-to-your-student-image.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1200px) {
+    .hero-content {
+        margin-left: 5%;
+    }
+    
+    .menu-items {
+        width: 350px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero-content {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .menu-items {
+        width: 300px;
+        transform: none;
+    }
+
+    .menu-item {
+        transform: none !important;
+        font-size: 1.1rem;
+    }
+
+    .hero-content::after {
+        display: none;
+    }
+}
+
+.carousel-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background-color: #ffffff;
+    margin-top: -10vh;
+    padding-top: 150px;
+    box-sizing: border-box;
+}
+
+.section-title {
+    font-size: 2.5rem; /* Adjust the font size */
+    font-weight: bold; /* Make the text bold */
+    text-align: center; /* Center the text */
+    margin-bottom: 20px; /* Space below the title */
+    color: #333; /* Text color */
+    font-family: 'Noto Kufi Arabic', sans-serif; /* Font family */
+    line-height: 1.2; /* Line height for better readability */
+}
+
+.carousel {
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.carousel-container {
+    overflow: hidden;
+    width: 100%;
+    padding: 0 20px;
+    margin: 2rem 0;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+    flex: 0 0 250px;
+    aspect-ratio: 1/1;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 1;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-button:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+    left: -20px;
+}
+
+.next {
+    right: -20px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .carousel-slide {
+        width: calc(50% - 1rem);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .carousel-slide {
+        width: 100%;
+    }
+}
+
+
+
+
+/* Update the sections positioning */
+.hero, .carousel-section {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Ensure proper stacking */
+body {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Add these styles for the model container */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+#model-container {
+    flex: 1;
+    height: 600px;
+    margin-left: 2rem;
+}
+
+.hero-content {
+    flex: 1;
+    /* existing styles */
+}
+
+model-viewer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    --poster-color: transparent;
+    background: transparent;
+}
+
+/* Optional: Add some interaction styles */
+model-viewer::part(default-progress-bar) {
+    display: none;
+}
+
+/* Ensure menu items are still clickable */
+.menu-items {
+    position: relative;
+    z-index: 3;
+}
+
+.about-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.about-content {
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    align-content: center; /* Align items at the top */
+}
+
+.about-image {
+    width: 400px; /* Adjust the width as needed */
+    height: auto;
+    margin-left: 20px; /* Add space between the image and text */
+}
+
+.about-text {
+    flex: 1; /* Allow text to take up remaining space */
+    direction: rtl; /* Set text direction to right-to-left */
+    text-align: right; /* Align text to the right */
+}
+
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+spline-viewer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Common background for both header and first section */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url('img/background.png');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    z-index: -1;
+}
+
+/* First Section Styles */
+.home-section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    background: transparent;
+}
+
+.contact-container {
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    margin: 10px 100px;
+}
+
+.customer-service-icon {
+    font-size: 100px;
+    color: #f6b99d; 
+}
+
+.map-section {
+    padding: 20px;
+    text-align: center;
+}
+
+.map-container {
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.contact-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.section-title {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column; /* Default to column layout for smaller screens */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    height: auto; /* Allow height to adjust based on content */
+}
+
+.map-side, .info-side {
+    flex: 1;
+    min-width: 100%; /* Full width for smaller screens */
+    height: auto; /* Allow height to adjust based on content */
+}
+
+.map-side iframe {
+    width: 100%;
+    height: 300px; /* Set a default height for smaller screens */
+    border: none;
+}
+
+.info-side {
+    padding: 30px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    direction: rtl;
+}
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+    .contact-container {
+        flex-direction: row; /* Switch to row layout for larger screens */
+        height: 400px; /* Set a consistent height */
+    }
+
+    .map-side, .info-side {
+        min-width: 50%; /* Half width for larger screens */
+        height: 100%; /* Fill the container height */
+    }
+
+    .map-side iframe {
+        height: 100%; /* Fill the container height */
+    }
+}
+
+
